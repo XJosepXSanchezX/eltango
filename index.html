@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brasería El Tango — Asador argentino en Barcelona</title>
+<meta name="description" content="Brasería El Tango. Carne al asador, vino de Mendoza y el compás del tango, en el corazón de Barcelona.">
+<meta property="og:title" content="Brasería El Tango — Barcelona">
+<meta property="og:description" content="Carne al asador, vino de Mendoza y el compás del tango.">
+<meta property="og:image" content="images/og-image.webp">
+<meta property="og:type" content="restaurant.restaurant">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Jost:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --char:#150f0b;
+    --panel:#231810;
+    --panel-2:#2c1e15;
+    --ember:#e0763a;
+    --ember-hot:#ff9a52;
+    --tango:#7d2230;
+    --tango-2:#9c2c3c;
+    --cream:#f3e8d8;
+    --cream-dim:#cbb99f;
+    --brass:#a9895f;
+    --line: rgba(169,137,95,0.28);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--char);
+    color:var(--cream);
+    font-family:'Jost', sans-serif;
+    font-weight:300;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+  a{color:inherit;}
+  h1,h2,h3{font-family:'Abril Fatface', serif; font-weight:400; margin:0;}
+  .mono{font-family:'Space Mono', monospace;}
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    color:var(--ember-hot);
+  }
+  .wrap{max-width:1120px; margin:0 auto; padding:0 28px;}
+
+  /* ---------- background grain / vignette ---------- */
+  .grain{
+    position:fixed; inset:0; pointer-events:none; z-index:2; opacity:0.05; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ---------- nav ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 28px;
+    background:linear-gradient(to bottom, rgba(21,15,11,0.92), rgba(21,15,11,0));
+    transition:background 0.3s ease;
+  }
+  .brandmark{display:flex; align-items:center; gap:10px; font-family:'Abril Fatface', serif; font-size:1.15rem; letter-spacing:0.02em;}
+  .brandmark .dot{width:8px; height:8px; border-radius:50%; background:var(--ember-hot); box-shadow:0 0 10px 2px var(--ember-hot); animation:pulse 2.4s ease-in-out infinite;}
+  nav ul{display:flex; gap:30px; list-style:none; margin:0; padding:0;}
+  nav a{
+    font-size:0.82rem; text-decoration:none; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--cream-dim); position:relative; padding-bottom:4px;
+  }
+  nav a:hover, nav a:focus-visible{color:var(--ember-hot);}
+  nav a::after{content:''; position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--ember-hot); transition:width 0.25s ease;}
+  nav a:hover::after, nav a:focus-visible::after{width:100%;}
+  .nav-cta{
+    display:inline-block; font-family:'Space Mono',monospace; font-size:0.78rem; letter-spacing:0.05em;
+    color:var(--char); background:var(--ember-hot); padding:9px 18px; border-radius:2px; text-decoration:none;
+    text-transform:uppercase;
+  }
+  .menu-toggle{display:none; background:none; border:1px solid var(--line); color:var(--cream); width:42px; height:38px; border-radius:2px; font-size:1.1rem; cursor:pointer;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:140px 24px 100px;
+    background-image:
+      radial-gradient(ellipse 900px 500px at 50% 112%, rgba(224,118,58,0.45), transparent 60%),
+      radial-gradient(ellipse 600px 400px at 15% 0%, rgba(125,34,48,0.35), transparent 60%),
+      linear-gradient(180deg, rgba(21,15,11,0.55), rgba(18,11,8,0.88) 70%),
+      url('images/hero-bg.webp');
+    background-size:cover;
+    background-position:center;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:''; position:absolute; inset:0;
+    background-image:repeating-linear-gradient(115deg, rgba(255,255,255,0.015) 0 2px, transparent 2px 6px);
+    pointer-events:none;
+  }
+  .coals{position:absolute; bottom:0; left:0; right:0; height:160px; pointer-events:none;}
+  .coal{
+    position:absolute; bottom:10px; width:5px; height:5px; border-radius:50%;
+    background:var(--ember-hot); box-shadow:0 0 8px 2px var(--ember);
+    animation:rise 6s ease-in infinite;
+    opacity:0;
+  }
+  .hero-eyebrow{margin-bottom:22px;}
+  .hero h1{
+    font-size:clamp(3.4rem, 11vw, 8rem); line-height:0.92; letter-spacing:0.01em;
+    color:var(--cream);
+    text-shadow:0 0 40px rgba(224,118,58,0.45), 0 0 90px rgba(224,118,58,0.15);
+  }
+  .hero h1 span{display:block; color:var(--ember-hot); font-size:0.32em; font-family:'Space Mono',monospace; letter-spacing:0.5em; margin-top:18px; text-transform:uppercase; text-shadow:none;}
+  .hero p.sub{
+    max-width:480px; margin:28px auto 0; color:var(--cream-dim); font-size:1.05rem; line-height:1.7; font-weight:300;
+  }
+  .hero-ctas{display:flex; gap:16px; margin-top:42px; flex-wrap:wrap; justify-content:center;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; padding:14px 30px; border-radius:2px; text-decoration:none;
+    font-size:0.82rem; letter-spacing:0.08em; text-transform:uppercase; font-family:'Space Mono',monospace;
+    transition:transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-solid{background:var(--ember-hot); color:#1a1008; box-shadow:0 8px 24px -8px rgba(224,118,58,0.6);}
+  .btn-ghost{border:1px solid var(--line); color:var(--cream);}
+  .btn-ghost:hover{border-color:var(--ember-hot); color:var(--ember-hot);}
+  .scroll-hint{position:absolute; bottom:28px; left:50%; transform:translateX(-50%); font-family:'Space Mono',monospace; font-size:0.65rem; letter-spacing:0.3em; color:var(--brass); text-transform:uppercase;}
+  .scroll-hint::after{content:''; display:block; width:1px; height:32px; background:linear-gradient(var(--brass), transparent); margin:10px auto 0; animation:pulse 2s ease-in-out infinite;}
+
+  /* ---------- ember divider (signature element) ---------- */
+  .divider{position:relative; display:flex; align-items:center; justify-content:center; padding:70px 0; gap:10px;}
+  .divider .line{flex:1; max-width:220px; height:1px; background:linear-gradient(90deg, transparent, var(--line));}
+  .divider .line.right{background:linear-gradient(270deg, transparent, var(--line));}
+  .divider .embers{display:flex; gap:9px;}
+  .divider .embers i{
+    width:6px; height:6px; border-radius:50%; background:var(--ember); display:block;
+    box-shadow:0 0 6px 1px var(--ember);
+    animation:flicker 2.6s ease-in-out infinite;
+  }
+  .divider .embers i:nth-child(1){animation-delay:0s;}
+  .divider .embers i:nth-child(2){animation-delay:0.4s; background:var(--ember-hot);}
+  .divider .embers i:nth-child(3){animation-delay:0.8s;}
+  .divider .embers i:nth-child(4){animation-delay:1.2s; background:var(--ember-hot);}
+  .divider .embers i:nth-child(5){animation-delay:1.6s;}
+
+  @keyframes flicker{
+    0%,100%{opacity:0.35; transform:scale(0.8) translateY(0);}
+    50%{opacity:1; transform:scale(1.15) translateY(-3px);}
+  }
+  @keyframes pulse{0%,100%{opacity:0.4;} 50%{opacity:1;}}
+  @keyframes rise{
+    0%{opacity:0; transform:translateY(0) translateX(0);}
+    10%{opacity:0.9;}
+    90%{opacity:0.2;}
+    100%{opacity:0; transform:translateY(-140px) translateX(var(--drift,10px));}
+  }
+
+  /* ---------- section shared ---------- */
+  section{padding:20px 0 40px; position:relative;}
+  .section-head{max-width:640px; margin:0 auto 56px; text-align:center;}
+  .section-head h2{font-size:clamp(2.1rem,5vw,3.2rem); color:var(--cream); margin-top:14px;}
+  .section-head p{color:var(--cream-dim); margin-top:16px; line-height:1.75; font-size:1.02rem;}
+
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity 0.7s ease, transform 0.7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------- historia ---------- */
+  .historia{display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;}
+  .historia .art{
+    aspect-ratio:4/5; border-radius:2px; position:relative; overflow:hidden;
+    border:1px solid var(--line);
+  }
+  .historia .art img{width:100%; height:100%; object-fit:cover; display:block; filter:saturate(1.05) contrast(1.02);}
+  .historia .art::after{
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(21,15,11,0) 55%, rgba(21,15,11,0.65));
+    pointer-events:none;
+  }
+  .historia .art .grid-lines{position:absolute; inset:0; background-image:linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size:34px 34px; opacity:0.25; pointer-events:none;}
+  .historia .copy p{line-height:1.85; color:var(--cream-dim); margin:0 0 18px; font-size:1.02rem;}
+  .historia .copy p strong{color:var(--cream); font-weight:500;}
+  .stat-row{display:flex; gap:36px; margin-top:32px;}
+  .stat-row div{border-left:1px solid var(--line); padding-left:16px;}
+  .stat-row .num{font-family:'Abril Fatface',serif; font-size:2.1rem; color:var(--ember-hot); display:block;}
+  .stat-row .lbl{font-family:'Space Mono',monospace; font-size:0.68rem; letter-spacing:0.12em; color:var(--brass); text-transform:uppercase;}
+
+  /* ---------- menu ---------- */
+  .menu-tabs{display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin-bottom:48px;}
+  .menu-tabs button{
+    font-family:'Space Mono',monospace; font-size:0.75rem; letter-spacing:0.08em; text-transform:uppercase;
+    background:none; border:1px solid var(--line); color:var(--cream-dim); padding:10px 20px; border-radius:2px; cursor:pointer;
+    transition:all 0.2s ease;
+  }
+  .menu-tabs button:hover{color:var(--cream); border-color:var(--brass);}
+  .menu-tabs button.active{background:var(--tango); border-color:var(--tango); color:var(--cream);}
+
+  .menu-panel{display:none; max-width:760px; margin:0 auto;}
+  .menu-panel.active{display:block;}
+  .menu-item{
+    display:flex; align-items:baseline; gap:14px; padding:20px 0; border-bottom:1px dashed var(--line);
+  }
+  .menu-item:last-child{border-bottom:none;}
+  .menu-item .name{font-size:1.12rem; color:var(--cream); font-weight:500; white-space:nowrap;}
+  .menu-item .fill{flex:1; border-bottom:1px dotted rgba(203,185,159,0.35); transform:translateY(-5px);}
+  .menu-item .price{font-family:'Space Mono',monospace; color:var(--ember-hot); font-size:1rem;}
+  .menu-item .desc{flex-basis:100%; color:var(--cream-dim); font-size:0.9rem; margin-top:-8px; line-height:1.6;}
+  .menu-note{text-align:center; margin-top:36px; font-size:0.85rem; color:var(--brass); font-family:'Space Mono',monospace;}
+
+  /* ---------- ambiente ---------- */
+  .ambiente-grid{display:grid; grid-template-columns:1.3fr 1fr 1fr; grid-template-rows:180px 180px; gap:14px;}
+  .ambiente-grid .tile{
+    border-radius:2px; border:1px solid var(--line); position:relative; overflow:hidden;
+  }
+  .ambiente-grid .tile img{width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.5s ease;}
+  .ambiente-grid .tile:hover img{transform:scale(1.05);}
+  .ambiente-grid .tile:nth-child(1){grid-row:span 2;}
+  .ambiente-grid .tile span{
+    position:absolute; bottom:12px; left:14px; font-family:'Space Mono',monospace; font-size:0.65rem;
+    letter-spacing:0.14em; color:var(--cream); text-transform:uppercase; z-index:2;
+    text-shadow:0 1px 6px rgba(0,0,0,0.8);
+  }
+  .ambiente-grid .tile::after{content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(21,15,11,0) 45%, rgba(21,15,11,0.75)); pointer-events:none; z-index:1;}
+
+  /* ---------- reservas / contacto ---------- */
+  .reservas{
+    background:linear-gradient(160deg, var(--tango), #4c1620); border-radius:4px; padding:64px 48px;
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:center; position:relative; overflow:hidden;
+  }
+  .reservas::after{content:''; position:absolute; inset:0; background-image:repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0 2px, transparent 2px 10px); pointer-events:none;}
+  .reservas h2{font-size:clamp(2rem,4.5vw,2.8rem); color:var(--cream);}
+  .reservas p{color:rgba(243,232,216,0.85); line-height:1.75; margin-top:16px; max-width:420px;}
+  .reservas .btn-solid{margin-top:28px;}
+  .info-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:20px;}
+  .info-list li{display:flex; gap:14px; align-items:flex-start; border-left:1px solid rgba(243,232,216,0.25); padding-left:16px;}
+  .info-list .k{font-family:'Space Mono',monospace; font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--ember-hot); display:block; margin-bottom:4px;}
+  .info-list .v{color:var(--cream); font-size:0.98rem; line-height:1.6;}
+
+  footer{padding:48px 0 32px; text-align:center;}
+  footer .brandmark{justify-content:center; margin-bottom:14px;}
+  footer p{color:var(--brass); font-family:'Space Mono',monospace; font-size:0.72rem; letter-spacing:0.05em;}
+
+  .whatsapp-float{
+    position:fixed; bottom:26px; right:26px; z-index:60; width:58px; height:58px; border-radius:50%;
+    background:#25D366; display:flex; align-items:center; justify-content:center; box-shadow:0 10px 30px -8px rgba(0,0,0,0.6);
+    text-decoration:none; transition:transform 0.2s ease;
+  }
+  .whatsapp-float:hover{transform:scale(1.08);}
+  .whatsapp-float svg{width:28px; height:28px; fill:#fff;}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:900px){
+    .historia{grid-template-columns:1fr;}
+    .ambiente-grid{grid-template-columns:1fr 1fr; grid-template-rows:150px 150px 150px;}
+    .ambiente-grid .tile:nth-child(1){grid-row:auto; grid-column:span 2;}
+    .reservas{grid-template-columns:1fr; padding:44px 28px;}
+  }
+  @media (max-width:720px){
+    nav ul, .nav-cta{display:none;}
+    .menu-toggle{display:block;}
+    header.open nav{
+      display:flex; position:fixed; inset:0; top:64px; background:var(--char); flex-direction:column;
+      padding:40px 28px; z-index:49;
+    }
+    header.open nav ul{display:flex; flex-direction:column; gap:26px; font-size:1.1rem;}
+    header.open .nav-cta{display:inline-block; margin-top:26px;}
+    .menu-item .name{white-space:normal;}
+  }
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<header id="siteHeader">
+  <div class="brandmark"><span class="dot"></span>El Tango</div>
+  <nav id="siteNav">
+    <ul>
+      <li><a href="#historia">Historia</a></li>
+      <li><a href="#carta">Carta</a></li>
+      <li><a href="#ambiente">Ambiente</a></li>
+      <li><a href="#reservas">Reservas</a></li>
+    </ul>
+  </nav>
+  <a class="nav-cta" href="#reservas">Reservar</a>
+  <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
+</header>
+
+<section class="hero">
+  <div class="coals" id="coals"></div>
+  <div class="hero-eyebrow eyebrow">Brasería argentina — Barcelona</div>
+  <h1>El Tango<span>Fuego, carne y compás</span></h1>
+  <p class="sub">Parrilla criolla al fuego de leña, cortes madurados y vinos de Mendoza, en un rincón de Buenos Aires en pleno Barcelona.</p>
+  <div class="hero-ctas">
+    <a href="#reservas" class="btn btn-solid">Reservar mesa</a>
+    <a href="#carta" class="btn btn-ghost">Ver la carta</a>
+  </div>
+  <div class="scroll-hint">Bajar</div>
+</section>
+
+<div class="divider"><div class="line"></div><div class="embers"><i></i><i></i><i></i><i></i><i></i></div><div class="line right"></div></div>
+
+<section id="historia" class="wrap">
+  <div class="historia">
+    <div class="art reveal">
+      <img src="images/historia.webp" alt="El asador de Brasería El Tango">
+      <div class="grid-lines"></div>
+    </div>
+    <div class="copy reveal">
+      <div class="eyebrow">Nuestra historia</div>
+      <h2 style="margin-top:14px; font-size:clamp(2rem,4vw,2.6rem);">Un asador con acento porteño</h2>
+      <p><strong>El Tango</strong> nació de una idea simple: traer a Barcelona la parrilla criolla tal y como se hace en Buenos Aires, sin atajos. Carbón y leña, cortes seleccionados y el tiempo justo sobre la brasa.</p>
+      <p>Detrás del asador, una familia de raíces argentinas que lleva el compás del tango en la cocina y en la sala: se cocina despacio, se sirve con calma y se come acompañado.</p>
+      <div class="stat-row">
+        <div><span class="num">6h</span><span class="lbl">Cocción lenta</span></div>
+        <div><span class="num">100%</span><span class="lbl">Leña y carbón</span></div>
+        <div><span class="num">12</span><span class="lbl">Cortes en carta</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="line"></div><div class="embers"><i></i><i></i><i></i><i></i><i></i></div><div class="line right"></div></div>
+
+<section id="carta" class="wrap">
+  <div class="section-head reveal">
+    <div class="eyebrow">La carta</div>
+    <h2>Directo del asador</h2>
+    <p>Todo lo que pasa por la brasa se sirve al punto que pidas, con guarniciones criollas y pan casero.</p>
+  </div>
+
+  <div class="menu-tabs reveal">
+    <button class="active" data-tab="asador">Del asador</button>
+    <button data-tab="entrantes">Para empezar</button>
+    <button data-tab="guarniciones">Guarniciones</button>
+    <button data-tab="postres">Postres</button>
+    <button data-tab="vinos">Vinos</button>
+  </div>
+
+  <div class="menu-panel active" id="asador">
+    <div class="menu-item"><span class="name">Bife de chorizo</span><span class="fill"></span><span class="price mono">24€</span><span class="desc">Corte insignia de la parrilla, madurado 21 días, punto a elección.</span></div>
+    <div class="menu-item"><span class="name">Ojo de bife</span><span class="fill"></span><span class="price mono">26€</span><span class="desc">Ribeye jugoso con el hueso de veta, marcado a fuego fuerte.</span></div>
+    <div class="menu-item"><span class="name">Entraña</span><span class="fill"></span><span class="price mono">22€</span><span class="desc">Falda argentina, fina y sabrosa, con chimichurri de la casa.</span></div>
+    <div class="menu-item"><span class="name">Vacío</span><span class="fill"></span><span class="price mono">21€</span><span class="desc">Corte largo y magro, cocción lenta hasta quedar tierno por dentro.</span></div>
+    <div class="menu-item"><span class="name">Chorizo criollo</span><span class="fill"></span><span class="price mono">9€</span><span class="desc">Artesanal, con chimichurri y pan casero.</span></div>
+    <div class="menu-item"><span class="name">Morcilla dulce</span><span class="fill"></span><span class="price mono">8€</span><span class="desc">Receta tradicional, ligeramente caramelizada al carbón.</span></div>
+  </div>
+
+  <div class="menu-panel" id="entrantes">
+    <div class="menu-item"><span class="name">Provoleta</span><span class="fill"></span><span class="price mono">11€</span><span class="desc">Queso provolone fundido a la parrilla con orégano y aceite de oliva.</span></div>
+    <div class="menu-item"><span class="name">Empanadas criollas</span><span class="fill"></span><span class="price mono">9€</span><span class="desc">Trío de carne cortada a cuchillo, horneadas al momento.</span></div>
+    <div class="menu-item"><span class="name">Matambre a la pizza</span><span class="fill"></span><span class="price mono">13€</span><span class="desc">Fino corte de matambre gratinado con tomate y muzzarella.</span></div>
+    <div class="menu-item"><span class="name">Ensalada criolla</span><span class="fill"></span><span class="price mono">8€</span><span class="desc">Tomate, cebolla morada y pimiento, aliño de vinagre de vino.</span></div>
+  </div>
+
+  <div class="menu-panel" id="guarniciones">
+    <div class="menu-item"><span class="name">Papas bravas al romero</span><span class="fill"></span><span class="price mono">6€</span></div>
+    <div class="menu-item"><span class="name">Batatas asadas</span><span class="fill"></span><span class="price mono">6€</span></div>
+    <div class="menu-item"><span class="name">Ensalada mixta</span><span class="fill"></span><span class="price mono">6€</span></div>
+    <div class="menu-item"><span class="name">Puré de papa criollo</span><span class="fill"></span><span class="price mono">6€</span></div>
+  </div>
+
+  <div class="menu-panel" id="postres">
+    <div class="menu-item"><span class="name">Dulce de leche casero</span><span class="fill"></span><span class="price mono">7€</span><span class="desc">Con panqueque tibio y helado de vainilla.</span></div>
+    <div class="menu-item"><span class="name">Flan criollo</span><span class="fill"></span><span class="price mono">6€</span><span class="desc">Con dulce de leche y crema batida.</span></div>
+    <div class="menu-item"><span class="name">Alfajores de maicena</span><span class="fill"></span><span class="price mono">5€</span></div>
+  </div>
+
+  <div class="menu-panel" id="vinos">
+    <div class="menu-item"><span class="name">Malbec, Mendoza</span><span class="fill"></span><span class="price mono">24€</span><span class="desc">Copa 6€ · Botella</span></div>
+    <div class="menu-item"><span class="name">Torrontés, Salta</span><span class="fill"></span><span class="price mono">22€</span><span class="desc">Copa 5,5€ · Botella</span></div>
+    <div class="menu-item"><span class="name">Cabernet Franc, Uco Valley</span><span class="fill"></span><span class="price mono">27€</span><span class="desc">Botella</span></div>
+  </div>
+
+  <div class="menu-note">Carta orientativa · precios en euros, IVA incluido</div>
+</section>
+
+<div class="divider"><div class="line"></div><div class="embers"><i></i><i></i><i></i><i></i><i></i></div><div class="line right"></div></div>
+
+<section id="ambiente" class="wrap">
+  <div class="section-head reveal">
+    <div class="eyebrow">El local</div>
+    <h2>Madera, brasa y sobremesa</h2>
+    <p>Una sala cálida pensada para quedarse: luz baja, mesas de madera maciza y el asador siempre a la vista.</p>
+  </div>
+  <div class="ambiente-grid reveal">
+    <div class="tile"><img src="images/ambiente-parrilla.webp" alt="La parrilla encendida"><span>La parrilla</span></div>
+    <div class="tile"><img src="images/ambiente-sala.webp" alt="Sala principal"><span>Sala principal</span></div>
+    <div class="tile"><img src="images/ambiente-barra.webp" alt="Barra de vinos"><span>Barra de vinos</span></div>
+    <div class="tile"><img src="images/ambiente-terraza.webp" alt="Terraza"><span>Terraza</span></div>
+    <div class="tile"><img src="images/ambiente-sobremesa.webp" alt="Sobremesa"><span>Sobremesa</span></div>
+  </div>
+</section>
+
+<div class="divider"><div class="line"></div><div class="embers"><i></i><i></i><i></i><i></i><i></i></div><div class="line right"></div></div>
+
+<section id="reservas" class="wrap">
+  <div class="reservas reveal">
+    <div>
+      <div class="eyebrow" style="color:var(--cream);">Reservas</div>
+      <h2>Guardamos tu mesa junto al fuego</h2>
+      <p>Escríbenos por WhatsApp con día, hora y número de comensales, o llámanos directamente.</p>
+      <a href="https://wa.me/34600000000?text=Hola%2C%20quiero%20reservar%20mesa%20en%20El%20Tango" class="btn btn-solid" target="_blank" rel="noopener">Reservar por WhatsApp</a>
+    </div>
+    <ul class="info-list">
+      <li><div><span class="k">Dirección</span><span class="v">Carrer del Tango, 12 · Barcelona</span></div></li>
+      <li><div><span class="k">Horario</span><span class="v">Martes a domingo, 13:00–16:00 y 20:00–00:00 · Lunes cerrado</span></div></li>
+      <li><div><span class="k">Teléfono</span><span class="v">+34 600 000 000</span></div></li>
+      <li><div><span class="k">Reservas grupo</span><span class="v">Consulta menús para grupos y eventos</span></div></li>
+    </ul>
+  </div>
+</section>
+
+<footer class="wrap">
+  <div class="brandmark"><span class="dot"></span>El Tango</div>
+  <p>© 2026 Brasería El Tango · Barcelona</p>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/34600000000" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.51 2 12.04 2zm5.8 14.1c-.24.68-1.4 1.3-1.93 1.36-.49.06-1.1.09-1.78-.11-.41-.12-.94-.3-1.61-.58-2.84-1.23-4.7-4.1-4.84-4.29-.14-.19-1.16-1.55-1.16-2.95 0-1.4.73-2.09.99-2.38.26-.29.57-.36.76-.36h.55c.18 0 .41-.03.64.49.24.53.81 1.93.88 2.07.07.14.12.31.02.5-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.02 1.12 1 2.06 1.31 2.35 1.46.29.15.46.12.63-.07.17-.19.72-.85.92-1.14.19-.29.38-.24.63-.14.26.1 1.64.77 1.92.91.29.14.48.22.55.34.07.12.07.68-.17 1.36z"/></svg>
+</a>
+
+<script>
+  // ember rise particles
+  const coalsWrap = document.getElementById('coals');
+  const positions = [8,18,28,40,52,64,74,84,92];
+  positions.forEach((pos,i)=>{
+    const c = document.createElement('div');
+    c.className = 'coal';
+    c.style.left = pos + '%';
+    c.style.setProperty('--drift', (Math.random()*40-20)+'px');
+    c.style.animationDelay = (i*0.7)+'s';
+    c.style.animationDuration = (5+Math.random()*3)+'s';
+    coalsWrap.appendChild(c);
+  });
+
+  // mobile menu
+  const header = document.getElementById('siteHeader');
+  const toggle = document.getElementById('menuToggle');
+  toggle.addEventListener('click', ()=>{
+    header.classList.toggle('open');
+    toggle.textContent = header.classList.contains('open') ? '✕' : '☰';
+  });
+  document.querySelectorAll('#siteNav a').forEach(a=>{
+    a.addEventListener('click', ()=>{ header.classList.remove('open'); toggle.textContent='☰'; });
+  });
+
+  // menu tabs
+  const tabs = document.querySelectorAll('.menu-tabs button');
+  const panels = document.querySelectorAll('.menu-panel');
+  tabs.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      tabs.forEach(b=>b.classList.remove('active'));
+      panels.forEach(p=>p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // reveal on scroll
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
